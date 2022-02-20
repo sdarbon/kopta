@@ -1,0 +1,127 @@
+*{
+	border: 0;
+	font-family: inherit;
+	font-size: 100%;
+	font-style: inherit;
+	font-weight: inherit;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+  box-sizing: border-box;
+}
+html{
+	height : 100%;
+	width : 100%;
+	font-size : 1em;
+}
+body{		
+  font-size : 100%;	
+  min-height: 100vh;
+
+  font-family: 'Nunito';	
+
+  background: #282b59;
+  color : #F2F2F2;
+
+}
+
+/* BASE */
+h1{
+  font-size: 2em;
+  font-weight: bold;
+
+  font-family: 'Noto Sans';
+}
+h2{
+  font-size: 1.5em;
+  font-weight: bold;
+
+  font-family: 'Noto Sans';
+}
+h3{
+  font-size: 1.2em;
+  font-weight: bold;
+
+  font-family: 'Noto Sans';
+}
+
+/* FORMS ! INPUT / BUTTONS & CO */
+input[type="text"], select, div.select-custom{
+  padding : 0px 8px;
+
+  background: rgba(255,255,255,0.1);
+  border : 1px solid rgba(255,255,255,0.15);
+  border-bottom : 1px solid rgba(255,255,255,0.25);
+  color : #f2f2f2;
+  border-radius: 0px;
+  line-height: 36px;
+  background-clip: padding-box;
+  width : 100%;
+  display: block;
+}
+select{
+  height : 38px;
+}
+input[type="text"]:hover{
+  border : 1px solid rgba(255,255,255,0.25);
+  border-bottom : 1px solid rgba(255,255,255,0.35);
+}
+input[type="text"]:focus{
+  border-bottom : 1px solid #2196f3 ;
+}
+input::placeholder{
+  color: rgba(0,0,0,0.3);
+}
+
+/* TABLE */
+table {
+  white-space: nowrap;
+  margin: 0;
+  border: none;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+
+  width : 100%;
+}
+table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  text-align: left;
+
+  background : #181a36;
+  color : rgba(255,255,255,0.65); 
+  border-bottom : 1px rgba(255,255,255,0.25) solid;
+  
+  padding : 5px 10px;
+}
+table td {
+  text-align: left;
+  border-bottom : 1px rgba(255,255,255,0.15) solid;
+  
+  padding : 10px 10px;
+}
+
+table tbody th {
+  font-weight: 100;
+  font-style: italic;
+  text-align: left;
+  position: relative;
+}
+table thead th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+table tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+/* CLASS STANDARD */
+.pad {  padding : calc(var(--x) * 1px); }
+.marg {  margin : calc(var(--x) * 1px); }
+
+/* APPS */

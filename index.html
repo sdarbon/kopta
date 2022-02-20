@@ -1,0 +1,84 @@
+<!DOCTYPE html> 
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KOPTA</title>
+
+    <script src="js/vue-dev.js"></script>
+
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/body.css" />
+    <link rel="stylesheet" href="css/color.css" />
+    <link rel="stylesheet" href="css/all.min.css" />
+</head>
+<body>
+    <div id="app">
+        <div class="pad" style="--x:5">
+            <h1>{{ title }}</h1>
+        </div>
+        <div class="container">
+           <div class="pad" style="--x:5"> <input type="text" id="search" v-model="search" /></div>
+           <div>
+               <table>
+                   <thead>
+                       <tr>
+                           <th width="150px">N°</th>
+                           <th>Libellé</th>
+                       </tr>
+                   </thead>
+                   <tbody>
+                        <tr v-for="l in lines">
+                            <td>{{ l.num }}</td>
+                            <td>{{ l.label }}</td>
+                        </tr>
+                   </tbody>
+               </table>
+            
+           </div>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el : "#app",
+            data : { 
+                title : "Kopta",
+                search : "",
+                lines : [   {   "num" : "001",
+                                "label" : "Test 1" },                        
+                            {   "num" : "002",
+                                "label" : "Test 2" },                    
+                            {   "num" : "003",
+                                "label" : "Test 3" },                    
+                            {   "num" : "004",
+                                "label" : "Test 4" },                    
+                            {   "num" : "005",
+                                "label" : "Test 5" },                    
+                            {   "num" : "006",
+                                "label" : "Test 6" },                       
+                            {   "num" : "002",
+                                "label" : "Test 2" },                    
+                            {   "num" : "003",
+                                "label" : "Test 3" },                    
+                            {   "num" : "004",
+                                "label" : "Test 4" },                    
+                            {   "num" : "005",
+                                "label" : "Test 5" },                    
+                            {   "num" : "006",
+                                "label" : "Test 6" },                       
+                            {   "num" : "002",
+                                "label" : "Test 2" },                    
+                            {   "num" : "003",
+                                "label" : "Test 3" },                    
+                            {   "num" : "004",
+                                "label" : "Test 4" },                    
+                            {   "num" : "005",
+                                "label" : "Test 5" },                    
+                            {   "num" : "006",
+                                "label" : "Test 6" },
+                        ]
+            }
+        });
+    </script>
+</body>
+</html>
