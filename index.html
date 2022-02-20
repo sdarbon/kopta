@@ -6,6 +6,7 @@
     <title>KOPTA</title>
 
     <script src="js/vue-dev.js"></script>
+    <script src="js/lodash.js"></script>
 
     <link rel="stylesheet" href="css/fonts.css" />
     <link rel="stylesheet" href="css/body.css" />
@@ -13,30 +14,43 @@
     <link rel="stylesheet" href="css/all.min.css" />
 </head>
 <body>
-    <div id="app">
-        <div class="pad" style="--x:5">
+    <div id="app" class="">
+        <div class="pad flex0" style="--x:15">
             <h1>{{ title }}</h1>
         </div>
-        <div class="container">
-           <div class="pad" style="--x:5"> <input type="text" id="search" v-model="search" /></div>
-           <div>
-               <table>
-                   <thead>
-                       <tr>
-                           <th width="150px">N°</th>
-                           <th>Libellé</th>
-                       </tr>
-                   </thead>
-                   <tbody>
-                        <tr v-for="l in lines">
-                            <td>{{ l.num }}</td>
-                            <td>{{ l.label }}</td>
-                        </tr>
-                   </tbody>
-               </table>
-            
-           </div>
+        <div class="pad flex0" style="--x:15"> <input type="text" id="search" v-model="search" /></div>
+        <div class="container" style="">
+            <table>
+                <thead>
+                    <tr>
+                        <th width="150px">N°</th>
+                        <th>Libellé</th>
+                        <th width="150px" class="t-right">
+                            <input type="checkbox" id="activeonly" name="activeonly" v-model="activeonly" class="toggle" />
+                            <label for="activeonly"></label>
+                            <button type="button" class="blue darken-1" v-on:click="add()">
+                                <i class="fa-solid fa-plus"></i>
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(l, index) in activeLines">
+                        <td>{{ l.num }}</td>
+                        <td>{{ l.label }}</td>
+                        <td class="t-right">
+                            <button v-if="l.status" type="button" class="red" v-on:click="del(index)">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <button v-if="!l.status" type="button" class="blue darken-1" v-on:click="ret(index)">
+                                <i class="fa-solid fa-trash-arrow-up"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+        <div class="flex0 pad" style="--x:15"> SAMY! </div>
     </div>
     <script>
         var app = new Vue({
@@ -44,40 +58,43 @@
             data : { 
                 title : "Kopta",
                 search : "",
-                lines : [   {   "num" : "001",
-                                "label" : "Test 1" },                        
-                            {   "num" : "002",
-                                "label" : "Test 2" },                    
-                            {   "num" : "003",
-                                "label" : "Test 3" },                    
-                            {   "num" : "004",
-                                "label" : "Test 4" },                    
-                            {   "num" : "005",
-                                "label" : "Test 5" },                    
-                            {   "num" : "006",
-                                "label" : "Test 6" },                       
-                            {   "num" : "002",
-                                "label" : "Test 2" },                    
-                            {   "num" : "003",
-                                "label" : "Test 3" },                    
-                            {   "num" : "004",
-                                "label" : "Test 4" },                    
-                            {   "num" : "005",
-                                "label" : "Test 5" },                    
-                            {   "num" : "006",
-                                "label" : "Test 6" },                       
-                            {   "num" : "002",
-                                "label" : "Test 2" },                    
-                            {   "num" : "003",
-                                "label" : "Test 3" },                    
-                            {   "num" : "004",
-                                "label" : "Test 4" },                    
-                            {   "num" : "005",
-                                "label" : "Test 5" },                    
-                            {   "num" : "006",
-                                "label" : "Test 6" },
-                        ]
+                activeonly : true,
+                lines : [   {   num : "1",
+                                label : Math.random().toString(36).substr(2, 8).toUpperCase(),
+                                status : true }
+                        ],
+            },            
+            computed: {
+                activeLines: function() {
+                    var activeonly = this.activeonly;    
+                    var search = this.search;    
+
+                    return _.pickBy(this.lines, function(u) {       
+                        var v = (activeonly) ? u.status : true;
+                        if(v && search != '' && search != undefined){
+                            v = u.label.includes(search);
+                        }  
+
+                        return v;
+                    });
+                }
+            },
+            methods: {
+                add: function(){
+                    var num = this.lines.length + 1;
+                    var n = {   num : num,
+                                label : Math.random().toString(36).substr(2, 8).toUpperCase(),
+                                status : true   };
+                    this.lines.push(n);
+                },
+                del: function(idx){
+                   this.lines[idx].status = false;
+                },
+                ret: function(idx){
+                   this.lines[idx].status = true;
+                }
             }
+            
         });
     </script>
 </body>
