@@ -176,15 +176,42 @@ table tbody th {
  .t-right{  text-align: right; }
 .pad {    padding : calc(var(--x) * 1px); }
 .marg {   margin : calc(var(--x) * 1px); }
+
+
 .flex0{   flex : 0!important; }
 .flex200px{   flex : 0 1 200px!important; }
+.flexpx{   flex : 0 1 calc(var(--f) * 1px)!important; }
+
+.cflexbox{
+	flex : 1;
+	display : flex;
+	justify-content : start;
+	flex-direction : row;
+	align-items: shrew;
+	flex-wrap: wrap;
+}
+.cflexbox.nowrap{
+	flex-wrap: nowrap;		
+}
+.cflexbox.reverse{
+	flex-direction: row-reverse;
+}
+.cflexbox > *{
+	flex : 1;
+}
+
 .sticky{  
   position: sticky;
   top: 0;
   left: 0;
   z-index: 1;
- }
-/* APPS */
+}
+.bulle{
+  margin : 2px;
+  padding : 2px;
+  border-radius : 5px;
+}
+ /* APPS */
 #app{
   display : flex;
   flex-direction: column;

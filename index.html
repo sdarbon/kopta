@@ -15,8 +15,8 @@
 </head>
 <body>
     <div id="app" class="">
-        <div class="pad flex0" style="--x:15">
-            <h1>{{ title }}</h1>
+        <div class="pad flexpx cflexbox" style="--x:15; --f:50">
+            <div><h1>{{ title }}</h1></div>
         </div>
         <div class="pad flex0" style="--x:15"> <input type="text" id="search" v-model="search" /></div>
         <div class="container" style="">
@@ -50,9 +50,25 @@
                 </tbody>
             </table>
         </div>
-        <div class="flex0 pad" style="--x:15"> SAMY! </div>
+        <div class="flex0 pad cflexbox" style="--x:15"> 
+            <bulleinfo v-for="(l, index) in activeLines" v-bind:line="l"></bulleinfo>
+        </div>
     </div>
     <script>
+        // import BulleInfo from './vue/bulleinfo.vue'
+        Vue.component('bulleinfo',{
+            template : `<div class="flexpx grey darken-2 bulle t-center" style="--f:100">
+                            <div>{{line.label}}</div>
+                        </div>`,
+            props : ['line']
+        });
+
+        // export default {
+        //     components: {
+        //         BulleInfo
+        //     }
+        // }
+
         var app = new Vue({
             el : "#app",
             data : { 
