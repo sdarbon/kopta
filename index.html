@@ -19,7 +19,7 @@
             <div><h1>{{ title }}</h1></div>
         </div>
         <div class="pad flex0" style="--x:15"> <input type="text" id="search" v-model="search" /></div>
-        <div class="container" style="">
+        <div class="container">
             <table>
                 <thead>
                     <tr>
@@ -54,64 +54,6 @@
             <bulleinfo v-for="(l, index) in activeLines" v-bind:line="l"></bulleinfo>
         </div>
     </div>
-    <script>
-        // import BulleInfo from './vue/bulleinfo.vue'
-        Vue.component('bulleinfo',{
-            template : `<div class="flexpx grey darken-2 bulle t-center" style="--f:100">
-                            <div>{{line.label}}</div>
-                        </div>`,
-            props : ['line']
-        });
-
-        // export default {
-        //     components: {
-        //         BulleInfo
-        //     }
-        // }
-
-        var app = new Vue({
-            el : "#app",
-            data : { 
-                title : "Kopta",
-                search : "",
-                activeonly : true,
-                lines : [   {   num : "1",
-                                label : Math.random().toString(36).substr(2, 8).toUpperCase(),
-                                status : true }
-                        ],
-            },            
-            computed: {
-                activeLines: function() {
-                    var activeonly = this.activeonly;    
-                    var search = this.search;    
-
-                    return _.pickBy(this.lines, function(u) {       
-                        var v = (activeonly) ? u.status : true;
-                        if(v && search != '' && search != undefined){
-                            v = u.label.includes(search);
-                        }  
-
-                        return v;
-                    });
-                }
-            },
-            methods: {
-                add: function(){
-                    var num = this.lines.length + 1;
-                    var n = {   num : num,
-                                label : Math.random().toString(36).substr(2, 8).toUpperCase(),
-                                status : true   };
-                    this.lines.push(n);
-                },
-                del: function(idx){
-                   this.lines[idx].status = false;
-                },
-                ret: function(idx){
-                   this.lines[idx].status = true;
-                }
-            }
-            
-        });
-    </script>
+    <script src="./app.js"></script>
 </body>
 </html>
